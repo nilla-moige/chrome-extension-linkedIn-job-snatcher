@@ -1,3 +1,13 @@
+
+chrome.action.onClicked.addListener( tab => {
+  
+  // send message to contentScript with action 'extractJobDescription'
+  chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription' });
+
+  console.log(Date.now(), "Extension icon clicked");
+}
+)
+
 // This function is called when the extension is installed or updated
 chrome.runtime.onInstalled.addListener(() => {
   // Create a context menu item
@@ -5,7 +15,7 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "exampleContextMenu", // Unique identifier for the context menu item
     title: "Context Menu", // Text to be displayed in the context menu
-    contexts: ["selection"], // Show the context menu item only when text is selected
+    contexts: ["page"], // Show the context menu item only when text is selected
   });
 });
 
@@ -16,5 +26,8 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "exampleContextMenu") {
     const selectedText = info.selectionText; // Get the selected text
     console.log(Date.now(), "Selected text: ", selectedText);
+    chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription' }, (response) => {
+      console.log("Content script responded: ", response);
+    });
   }
 });
