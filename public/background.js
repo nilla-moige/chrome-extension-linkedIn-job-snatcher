@@ -14,7 +14,7 @@ chrome.runtime.onInstalled.addListener(() => {
   // See: https://developer.chrome.com/docs/extensions/reference/api/contextMenus#method-create
   chrome.contextMenus.create({
     id: "exampleContextMenu", // Unique identifier for the context menu item
-    title: "Context Menu", // Text to be displayed in the context menu
+    title: "Snatch Job", // Text to be displayed in the context menu
     contexts: ["page"], // Show the context menu item only when text is selected
   });
 });
