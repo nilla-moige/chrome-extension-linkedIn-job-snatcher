@@ -116,94 +116,44 @@ toggleBtn2.addEventListener('click', () => {
   const prompt5Button = document.getElementById('prompt5')
 
 
+  function copyToClipboard(response) {
+    console.log("Content script responded: ", response);
+    if (response && response.jobDescription) {
+        navigator.clipboard.writeText(response.jobDescription)
+          .then(() => {
+            console.log("Copied to clipboard!");
+            showNotification('Job description copied to clipboard!');
+            window.open('https://chat.openai.com/', '_blank');})
+          .catch(err => {
+            console.error("Failed to copy:", err)
+            showNotification('Failed to copy job description. Please try again.', true);
+          });
+    }
+  }
+
   // Gets current tab
   chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
     const tab = tabs[0];
     console.log("Current Tab ID:", tab.id);
 
     prompt1Button.addEventListener('click', () => {
-        chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription', promptNum: 1 }, (response) => {
-            console.log("Content script responded: ", response);
-            if (response && response.jobDescription) {
-                navigator.clipboard.writeText(response.jobDescription)
-                  .then(() => {
-                    console.log("Copied to clipboard!");
-                    showNotification('Job description copied to clipboard!');
-                    window.open('https://chat.openai.com/', '_blank');})
-                  .catch(err => {
-                    console.error("Failed to copy:", err)
-                    showNotification('Failed to copy job description. Please try again.', true);
-                  });
-            }
-        });
+        chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription', promptNum: 1 }, (response) => copyToClipboard(response));
     });
 
     prompt2Button.addEventListener('click', () => {
-        chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription', promptNum: 2 }, (response) => {
-            console.log("Content script responded: ", response);
-            if (response && response.jobDescription) {
-                navigator.clipboard.writeText(response.jobDescription)
-                  .then(() => {
-                    console.log("Copied to clipboard!");
-                    showNotification('Job description copied to clipboard!');
-                    window.open('https://chat.openai.com/', '_blank');})
-                  .catch(err => {
-                    console.error("Failed to copy:", err)
-                    showNotification('Failed to copy job description. Please try again.', true);
-                  });
-            }
-        });
+        chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription', promptNum: 2 }, (response) => copyToClipboard(response));
     });
 
     prompt3Button.addEventListener('click', () => {
-        chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription', promptNum: 3 }, (response) => {
-            console.log("Content script responded: ", response);
-            if (response && response.jobDescription) {
-                navigator.clipboard.writeText(response.jobDescription)
-                    .then(() => {
-                        console.log("Copied to clipboard!");
-                        showNotification('Job description copied to clipboard!');
-                        window.open('https://chat.openai.com/', '_blank');})
-                    .catch(err => {
-                        console.error("Failed to copy:", err)
-                        showNotification('Failed to copy job description. Please try again.', true);
-                    });
-            }
-        });
+        chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription', promptNum: 3 }, (response) => copyToClipboard(response));
     });
 
     prompt4Button.addEventListener('click', () => {
-        chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription', promptNum: 4 }, (response) => {
-            console.log("Content script responded: ", response);
-            if (response && response.jobDescription) {
-                navigator.clipboard.writeText(response.jobDescription)
-                    .then(() => {
-                        console.log("Copied to clipboard!");
-                        showNotification('Job description copied to clipboard!');
-                        window.open('https://chat.openai.com/', '_blank');})
-                    .catch(err => {
-                        console.error("Failed to copy:", err)
-                        showNotification('Failed to copy job description. Please try again.', true);
-                    });   
-            }
-        });
+        chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription', promptNum: 4 }, (response) => copyToClipboard(response));
     });
 
     prompt5Button.addEventListener('click', () => {
-        chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription', promptNum: 5 }, (response) => {
-            console.log("Content script responded: ", response);
-            if (response && response.jobDescription) {
-                navigator.clipboard.writeText(response.jobDescription)
-                  .then(() => {
-                    console.log("Copied to clipboard!");
-                    showNotification('Job description copied to clipboard!');
-                    window.open('https://chat.openai.com/', '_blank');})
-                  .catch(err => {
-                    console.error("Failed to copy:", err)
-                    showNotification('Failed to copy job description. Please try again.', true);
-                  });
-            }
-        });
+        chrome.tabs.sendMessage(tab.id, { action: 'extractJobDescription', promptNum: 5 }, (response) => copyToClipboard(response));
     });
   });
 
