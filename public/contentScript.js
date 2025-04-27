@@ -1,7 +1,18 @@
 // contentScript.js
+let coverLetterText = "";
+let resumeText = "";
+
+function loadInputs() {
+  chrome.storage.local.get(['coverLetterInput', 'resumeInput'], (result) => {
+      coverLetterText = result.coverLetterInput || '';
+      resumeText = result.resumeInput || '';
+  });
+  }
+
+loadInputs();
 
 // This function will be called when the extension button is clicked
-function extractJobDescription() {
+async function extractJobDescription(promptNum) {
     try {
       // Get the job title
       const jobTitleElement = document.querySelector('.job-details-jobs-unified-top-card__job-title a');
@@ -25,21 +36,30 @@ function extractJobDescription() {
       }
       
       // Format the full text to copy
-      const fullText = `Job Title: ${jobTitle}\nCompany: ${company}\n\nJob Description:\n${jobDescription}`;
+      let fullText = `Job Title: ${jobTitle}\nCompany: ${company}\n\nJob Description:\n${jobDescription}`;
       
-      // Copy to clipboard
-      navigator.clipboard.writeText(fullText)
-        .then(() => {
-          // Notify user of success
-          showNotification('Job description copied to clipboard!');
-          
-          // Open ChatGPT in a new tab?
-          window.open('https://chat.openai.com/', '_blank');
-        })
-        .catch(err => {
-          console.error('Failed to copy: ', err);
-          showNotification('Failed to copy job description. Please try again.', true);
-        });
+      const result = await new Promise((resolve) => {
+          chrome.storage.local.get(['coverLetterInput', 'resumeInput'], (result) => {
+              resolve(result);
+          });
+      });
+
+
+      coverLetterText = result.coverLetterInput || '';
+      resumeText = result.resumeInput || '';
+
+    
+      // EXAMPLE where I just append both cover letter and resume to the end. Feel free to mix it up!
+      // You can use coverLetterText & resumeText and they have the save resume info inside
+      fullText += "\n\n" + coverLetterText + "\n\n" + resumeText + "\n\n" + `${promptNum}`;
+
+      console.log("COVER LETTER:")
+      console.log(coverLetterText)
+      console.log("Resume")
+      console.log(resumeText)
+
+      return fullText;
+
         
     } catch (error) {
       console.error('Error extracting job description:', error);
@@ -70,12 +90,16 @@ function extractJobDescription() {
     }, 3000);
   }
   
+
   // Listen for messages from the extension popup or background script
   chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === "extractJobDescription") {
-      extractJobDescription();
-      sendResponse({status: "Extracting job description..."});
-      return true;
+      (async () => {
+        let promptNum = message.promptNum || 1;
+        const textToCopy = await extractJobDescription(promptNum);
+        sendResponse({ jobDescription: textToCopy });
+      })();
+      return true; // Tell Chrome we will respond asynchronously
     }
   });
   
