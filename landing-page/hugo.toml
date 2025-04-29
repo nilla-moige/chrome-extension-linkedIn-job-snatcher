@@ -13,17 +13,17 @@ themeDir = "themes/ananke"
 [menu]
   [[menu.main]]
     name = "Features"
-    url  = "#features"
+    url  = "/features/"
     weight = 10
 
   [[menu.main]]
     name = "How It Works"
-    url  = "#how"
+    url  = "/how/"
     weight = 20
 
   [[menu.main]]
     name = "Install"
-    url  = "#install"
+    url  = "/install/"
     weight = 30
 
   [[menu.main]]
