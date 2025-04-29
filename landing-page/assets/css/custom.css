@@ -1,0 +1,17 @@
+/* Custom CSS for the landing page extending on ananke theme */
+
+.hero-fullscreen {
+    background: url('/chrome-extension-linkedIn-job-snatcher/images/hero-bg.png') center/cover no-repeat;
+    color: white;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.card {
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px) scale(1.02); }

@@ -4,64 +4,73 @@ description: "Snatch job descriptions from LinkedIn with one click, prepend AI p
 ---
 
 <!-- Hero Section -->
-<div class="hero">
-  <h1>LinkedIn Job Snatcher</h1>
-  <p class="lead">Save time extracting job descriptions and generating AI-powered prompts right from LinkedIn.</p>
-  <p>
-    <a class="button button-primary" href="https://chrome.google.com/webstore/detail/your-extension-id" target="_blank">Add to Chrome</a>
-    <a class="button" href="https://github.com/nilla-moige/chrome-extension-linkedIn-job-snatcher" target="_blank">View on GitHub</a>
-  </p>
-</div>
+<section class="hero hero-fullscreen">
+  <div class="hero-body container has-text-centered">
+    <h1 class="title is-1">Boost Your Job Hunt with AI</h1>
+    <p class="subtitle is-4">
+      LinkedIn Job Snatcher grabs any job posting, enriches it with AI prompts, and integrates your resume—all in a single click.
+    </p>
+    <a class="button is-primary is-large" href="install/">Get the Extension</a>
+    <a class="button is-light is-large" href="how/">Learn More</a>
+  </div>
+</section>
 
-<!-- Feature Highlights -->
-<div id="features">
-## 🚀 Features
+<!-- Value Proposition -->
+<section class="section">
+  <div class="container">
+    <h2 class="title is-3 has-text-centered">Why Choose Job Snatcher?</h2>
+    <div class="columns is-variable is-8">
+      <div class="column has-text-centered">
+        <p class="icon is-large"><i class="fas fa-clock fa-2x"></i></p>
+        <h3 class="title is-5">Save Time</h3>
+        <p>Extract entire job descriptions instantly—no more manual copying.</p>
+      </div>
+      <div class="column has-text-centered">
+        <p class="icon is-large"><i class="fas fa-lightbulb fa-2x"></i></p>
+        <h3 class="title is-5">Get Insights</h3>
+        <p>AI-prompts help you identify key skills, draft interview questions, and more.</p>
+      </div>
+      <div class="column has-text-centered">
+        <p class="icon is-large"><i class="fas fa-user-edit fa-2x"></i></p>
+        <h3 class="title is-5">Customize Effortlessly</h3>
+        <p>Inject your resume & cover letter snippets right where you need them.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-### 1. One-Click Copy  
+<!-- Demo Video -->
+<section class="section has-background-light">
+  <div class="container has-text-centered">
+    <h2 class="title is-3">See It in Action</h2>
+    <video controls width="720" src="/videos/demo.mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section>
 
-On any LinkedIn Jobs page, click our toolbar button and instantly grab the full job description into your clipboard.
+<!-- Testimonials -->
+<section class="section">
+  <div class="container">
+    <h2 class="title is-3 has-text-centered">What Our Users Say</h2>
+    <div class="columns is-variable is-6">
+      <div class="column">
+        <blockquote>
+          “Job Snatcher transformed my application process—so fast and insightful!”
+          <footer>— Alex, Software Engineer</footer>
+        </blockquote>
+      </div>
+      <div class="column">
+        <blockquote>
+          “The AI prompts made preparing for interviews a breeze. Highly recommend.”
+          <footer>— Priya, Data Analyst</footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="screenshot"><img src="/images/screenshot-copy.png" alt="One-click copy demo"></div>
-
-### 2. Prebuilt AI Prompts  
-
-Choose from ready-made prompts—like “What skills are most important?”, or “Sample interview questions”—and they’ll be prepended before your clipboard text.
-
-<div class="screenshot"><img src="/images/screenshot-prompts.png" alt="Prompt selection"></div>
-
-### 3. Personal Resume & Cover-Letter Snippets  
-
-Store and toggle your resume or cover-letter text locally. When you fire a prompt, it integrates your personal boilerplate automatically.
-
-<div class="screenshot"><img src="/images/screenshot-resume.png" alt="Resume input"></div>
-</div>
-
-<!-- How It Works -->
-<div id="how">
-## ⚙️ How It Works
-
-1. **Install Extension**  
-   Add from the Chrome Web Store or load unpacked in developer mode.
-2. **Navigate to LinkedIn Jobs**  
-   Go to any job posting—our button becomes active.
-3. **Click & Select**  
-   Hit the “Snatch” button, choose your AI prompt, and voilà: the text (plus prompt) is in your clipboard.
-4. **Paste & Go**  
-   Paste into ChatGPT, your editor, or your CRM—instantly ready for analysis, drafting, or outreach.
-
-</div>
-
-<!-- Install Instructions -->
-<div id="install">
-## 📥 Install
-
-1. **Chrome Web Store**  
-   [Add to Chrome](https://chrome.google.com/webstore/detail/your-extension-id){: .button .button-large}
-2. **Load Unpacked**  
-
-   ```bash
-   git clone https://github.com/nilla-moige/chrome-extension-linkedIn-job-snatcher
-   cd chrome-extension-linkedIn-job-snatcher
-   npm install && npm run build
-   open chrome://extensions
-   enable Developer mode → Load unpacked → select `dist/`
+<!-- Final CTA -->
+<section class="section has-text-centered">
+  <a class="button is-primary is-large" href="install/">Add to Chrome</a>
+</section>

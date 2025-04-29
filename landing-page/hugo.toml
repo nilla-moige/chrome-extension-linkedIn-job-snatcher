@@ -4,6 +4,11 @@ title = "LinkedIn Job Snatcher"
 theme = "ananke"
 themeDir = "themes/ananke"
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true 
+      
 # Meta
 [params]
   author = "Team Moige"
