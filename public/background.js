@@ -8,6 +8,22 @@ chrome.action.onClicked.addListener( tab => {
 }
 )
 
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.contextMenus.create({
+    id: 'about',
+    title: 'About',
+    contexts: ['action']
+  });
+});
+
+chrome.contextMenus.onClicked.addListener(info => {
+  if (info.menuItemId === 'about') {
+    chrome.tabs.create({
+      url: 'https://nilla-moige.github.io/chrome-extension-linkedIn-job-snatcher/'
+    });
+  }
+});
+
 // Moved UI from context menu into popup
 
 // This function is called when the extension is installed or updated
