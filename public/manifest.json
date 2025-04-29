@@ -25,7 +25,8 @@
   "action": {
     "default_popup": "index.html",
     "default_title": "LinkedIn Job Snatcher"
-  }
+  },
+  "homepage_url": "https://nilla-moige.github.io/chrome-extension-linkedIn-job-snatcher/"
  }
  
  
