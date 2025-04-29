@@ -1,0 +1,3 @@
+[submodule "landing-page/themes/ananke"]
+	path = landing-page/themes/ananke
+	url = https://github.com/theNewDynamic/gohugo-theme-ananke.git

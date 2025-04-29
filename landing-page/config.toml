@@ -1,0 +1,3 @@
+baseURL = "https://nilla-moige.github.io/chrome-extension-linkedIn-job-snatcher/"
+title   = "LinkedIn Job Snatcher"
+theme   = "ananke"
