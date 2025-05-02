@@ -1,6 +1,6 @@
 ## Overview
 
-This file outlines the testing strategy for the **LinkedIn Job Snatcher** Chrome extension. The extension provides an interface on LinkedIn job pages to generate personalized job application prompts with ChatGPT. All testing was performed manually to validate user interface behavior and prompt reliability under various inputs.
+This file outlines the testing strategy for the **LinkedIn Job Snatcher** Chrome extension. The extension enhances the LinkedIn job application experience by generating personalized prompts for ChatGPT directly on job pages. Testing was conducted through a combination of **manual interface testing** and **automated unit tests** using `sinon-chrome`. The goal is to ensure reliable UI behavior, correct integration with browser APIs, and accurate prompt generation across varied inputs and environments.
 
 ---
 
@@ -73,7 +73,76 @@ Interface testing was conducted through manual walkthroughs in a Chrome browser.
   - All prompt buttons function correctly. Clipboard content is accurate and format is readable.
 
 ---
+## 2. Unit Testing (Automated)
+### Test Case 5: copyWithPrompt() function
+File: clipboard.ts
+Purpose: Ensure that the selected prompt is correctly prepended to the job description text and written to the clipboard.
 
+````ts
+Copy
+Edit
+import sinon from "sinon";
+import chrome from "sinon-chrome";
+import { copyWithPrompt } from "../src/clipboard";
+
+describe("copyWithPrompt()", () => {
+  beforeAll(() => {
+    global.chrome = chrome;
+  });
+
+  it("prepends selected prompt before copying", () => {
+    const jobText = "Job description";
+    const prompt = "What skills are most important?";
+    copyWithPrompt(prompt, jobText);
+    const expected = prompt + "\n\n" + jobText;
+    const lastCall = chrome.clipboard.writeText.getCall(0).args[0];
+    expect(lastCall).toBe(expected);
+  });
+});
+```
+**Expected Output**:
+Clipboard receives the full prompt with the user’s selected message prepended.
+
+**Observed Behavior**:
+Function behaves as expected and produces properly formatted output.
+
+### Test Case 6: extractJobDescription() function
+File: content-script.ts
+Purpose: Validate that the extension correctly extracts visible job description content from LinkedIn's job post DOM structure.
+
+```ts
+Copy
+Edit
+import sinon from "sinon";
+import chrome from "sinon-chrome";
+import { extractJobDescription } from "../src/content-script";
+
+describe("extractJobDescription()", () => {
+  beforeAll(() => {
+    global.chrome = chrome;
+    document.body.innerHTML = `
+      <div class="mt4">
+        <h1>Senior Engineer</h1>
+        <p>Description line 1</p>
+        <p>Description line 2</p>
+      </div>`;
+  });
+
+  it("should grab all text inside .mt4 container", () => {
+    const text = extractJobDescription();
+    expect(text).toContain("Senior Engineer");
+    expect(text).toContain("Description line 1");
+    expect(text).toContain("Description line 2");
+  });
+});
+```
+**Expected Output**:
+Aggregated text content of job title and description extracted from .mt4 container.
+
+**Observed Behavior**:
+Function accurately gathers job details for prompt generation.
+
+---
 ## 2. Prompt Testing
 
 ### Testing Approach
