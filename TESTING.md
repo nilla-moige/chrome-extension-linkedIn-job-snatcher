@@ -73,12 +73,13 @@ Interface testing was conducted through manual walkthroughs in a Chrome browser.
   - All prompt buttons function correctly. Clipboard content is accurate and format is readable.
 
 ---
-## 2. Unit Testing (Automated)
+## 2. Unit Testing (Automated)  
+Additionally, unit tests for several important functions were created automatically using `sinon-chrome`.
 ### Test Case 5: copyWithPrompt() function
 File: clipboard.ts
 Purpose: Ensure that the selected prompt is correctly prepended to the job description text and written to the clipboard.
 
-````ts
+```ts
 Copy
 Edit
 import sinon from "sinon";
@@ -143,7 +144,7 @@ Aggregated text content of job title and description extracted from .mt4 contain
 Function accurately gathers job details for prompt generation.
 
 ---
-## 2. Prompt Testing
+## 3. Prompt Testing
 
 ### Testing Approach
 
