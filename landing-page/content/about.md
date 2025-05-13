@@ -4,7 +4,7 @@ title: "About Us"
 
 # Meet the Team
 
-- **Nilla** — Copy-paste feature & demo video  
+- **Nilla** — Scraping copy-paste feature & demo video  
 - **Tommy** — AI prompt list & slide deck  
 - **Aaron** — Resume/cover-letter input & README  
 - **Vincent** — Hugo landing page & test suite  
