@@ -49,14 +49,28 @@ async function extractJobDescription(promptNum) {
       resumeText = result.resumeInput || '';
 
     
-      // EXAMPLE where I just append both cover letter and resume to the end. Feel free to mix it up!
-      // You can use coverLetterText & resumeText and they have the save resume info inside
-      fullText += "\n\n" + coverLetterText + "\n\n" + resumeText + "\n\n" + `${promptNum}`;
-
-      console.log("COVER LETTER:")
-      console.log(coverLetterText)
-      console.log("Resume")
-      console.log(resumeText)
+      switch(promptNum) {
+        case 1:
+          let prompt1 = "I want to tailor my resume to a specific job listing. Below is the job description and my current resume. Based on this, identify the most important skills, keywords, and accomplishments I should emphasize to make my resume a strong fit. Suggest edits to specific bullet points where appropriate, recommend additions if something important is missing, and ensure the tone and phrasing match industry expectations. Keep the output in resume format with clear bullet points and use concise, impactful language."
+          fullText = `${prompt1}\n\nJob Title: ${jobTitle}\n\nCompany: ${company}\n\n\nJob Description:\n\n=======\n${jobDescription}\n\n\nCurrent Resume:\n\n=======\n${resumeText}`;
+          break;
+        case 2:
+          let prompt2 = "Help me write a customized, compelling cover letter tailored to the job below. I’ve also included my resume so you can draw relevant experience and accomplishments from it. I've also included a previous cover letter you can use to reference my style of writing. The cover letter should highlight how my background aligns with the job responsibilities and qualifications, convey enthusiasm for the role, and remain professional but personable. It should be 3–4 concise paragraphs and clearly reflect why I’m a good fit."
+          fullText = `${prompt2}\n\nJob Title: ${jobTitle}\n\nCompany: ${company}\n\n\nJob Description:\n\n=======\n${jobDescription}\n\n\nCurrent Resume:\n\n=======\n${resumeText}\n\nPrevious Cover Letter:\n=======\n${coverLetterText}`;   
+          break;
+        case 3:
+          let prompt3 = "Help me prepare for an interview based on the job description below. Please identify:\nThe 5 most likely behavioral questions I’ll be asked based on the role.\nThe 3–5 most likely technical or role-specific questions.\nSample strong answers I could give based on the resume provided.\nKey themes or experiences I should emphasize.\nMake the advice practical and directly tied to the language and expectations in the job description. Use insights from my resume to tailor responses accordingly."     
+          fullText = `${prompt3}\n\nJob Title: ${jobTitle}\n\nCompany: ${company}\n\n\nJob Description:\n\n=======\n${jobDescription}\n\n\nCurrent Resume:\n\n=======\n${resumeText}`;        
+          break
+        case 4:
+          let prompt4 = "Using the job description and my resume, write a concise LinkedIn message I can send to the recruiter or hiring manager to express interest in the position. It should:\nBe professional but friendly\nMention 1–2 specific aspects of the job that excite me\nHighlight one key qualification or relevant experience from my resume\nEnd with a polite, open-ended invitation to connect or discuss further\nLimit to 100–150 words. Avoid sounding overly formal or robotic."
+          fullText = `${prompt4}\n\nJob Title: ${jobTitle}\n\nCompany: ${company}\n\n\nJob Description:\n\n=======\n${jobDescription}\n\n\nCurrent Resume:\n\n=======\n${resumeText}`;
+          break;
+        case 5:
+          let prompt5 = "Help me assess how well I match the job below based on my resume. Please:\nIdentify where I’m a strong match (skills, experience, keywords)\nPoint out any key gaps or qualifications I’m missing\nSuggest how I could frame my current experience to bridge those gaps\nAdvise if it’s worth applying, and if so, how to best position myself\nBe honest but constructive, and use clear examples from both the resume and job post to back up your points."
+          fullText = `${prompt5}\n\nJob Title: ${jobTitle}\n\nCompany: ${company}\n\n\nJob Description:\n\n=======\n${jobDescription}\n\n\nCurrent Resume:\n\n=======\n${resumeText}`;
+          break;
+        }
 
       return fullText;
 

@@ -10,6 +10,7 @@
 
 # production
 /build
+landing-page/public
 
 # misc
 .DS_Store
@@ -23,3 +24,6 @@ yarn-debug.log*
 yarn-error.log*
 
 dist
+landing-page/.hugo_build.lock
+landing-page/resources/_gen/assets/ananke/css/main.css_9d7c906d8fe82fddbbd923faebb24419.content
+landing-page/resources/_gen/assets/ananke/css/main.css_9d7c906d8fe82fddbbd923faebb24419.json
